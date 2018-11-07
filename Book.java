@@ -77,13 +77,24 @@ public class Book implements Comparable<Book> {
         for (Book book : list) {
             System.out.println(book);
         }
-        Map<Integer, Book> hashMap = new HashMap<Integer, Book>();
-        for (int i = 0; i < list.size(); i++) {
+        Map<Integer, Book> hashMap = new HashMap<>();
+        for (Book book : list) {
 
-            System.out.print("Please, enter the number of the shelf where is placed the book" + list.get(i).getTitle());
             int numShelf = scanner.nextInt();
-            /*Adding elements to HashMap*/
-            hashMap.put(numShelf, list.get(i));
+//            /*Adding elements to HashMap*/
+            hashMap.put(numShelf, book);
+        }
+        System.out.println("Insert the number of the shelf");
+        int selectedShelf = scanner.nextInt();
+        System.out.println("The book in shelf " + selectedShelf + " are:");
+        /* Display content using Iterator*/
+        Set set = hashMap.entrySet();
+        Iterator iterator = set.iterator();
+        while(iterator.hasNext()) {
+            Map.Entry entry = (Map.Entry)iterator.next();
+            if(selectedShelf == (int) entry.getValue()){
+                System.out.println(((Book)entry.getKey()).getTitle());
+            }
         }
     }
 
